@@ -1,5 +1,6 @@
 .header{
-	text-align: center;
+	display: flex;
+	justify-content: space-between;
 }
 .logo{
 	height: 100px;
@@ -12,15 +13,42 @@
 	padding-left: 30px;
 }
 
-.header nav a{
+.header a{
 	text-decoration: none;
 	color: white;
 	margin-right: 20px;
-	padding: 6px;
+	padding: 10px;
 	padding-bottom: 9px;
 	font-size: 20px;
 }
 
-.header nav a:hover{
-	background-color: lightgray;
+.header a:hover{
+	background-color: #ffffff;
+	padding: 20px 10px;
+	color: #1976D2;
+
+}
+
+.search-box{
+	position: relative;
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 0.50);
+	width: 400px;
+	height: 40px;
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.search-box input{
+	width: 350px;
+	height: 40px;
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.search-box input:focus{
+	background-color: transparent;
+	border-color: transparent;
+	outline: none;
 }

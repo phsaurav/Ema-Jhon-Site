@@ -1,41 +1,89 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
-import { faStar as emptyStar} from '@fortawesome/free-regular-svg-icons';
-import './Product.css';
-import Rating from 'react-rating';
+import Rating from '@mui/material/Rating';
+import {
+	Button,
+	Card,
+	CardContent,
+	CardMedia,
+	Typography,
+} from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Box } from '@mui/system';
+import { yellow } from '@mui/material/colors';
 
 const Product = (props) => {
 	console.log(props.product);
-	const { name, img, price, stock, seller,star } = props.product;
+	const { name, img, price, stock, seller, star } = props.product;
 	return (
-		<div className="product">
-			<img src={img} alt="" />
-			<div className="product-info">
-				<h2 className="product-name">{name}</h2>
-				<p>
-					<small>By: {seller}</small>
-				</p>
-				<p>Price: {price}</p>
-				<p>
-					<small>Only {stock} left in stock - hurry up!!</small>
-				</p>
-				<Rating
-					readonly
-					emptySymbol={<FontAwesomeIcon icon={emptyStar} />}
-					fullSymbol={<FontAwesomeIcon icon={fullStar} />}
-					initialRating = {star}
-					className="rating"
+		<div>
+			<Card sx={{ display: 'flex', mr: 3, mt: 5 }}>
+				<CardMedia
+					component="img"
+					sx={{ width: '280px', p: 2 }}
+					image={img}
+					alt="Live from space album cover"
 				/>
-				<br />
-				<button
-					onClick={() => props.handleAddToCart(props.product)}
-					className="btn-regular"
-				>
-					<FontAwesomeIcon icon={faShoppingCart} />
-					{''} Add to Cart
-				</button>
-			</div>
+				<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+					<CardContent sx={{ flex: '1 0 auto' }}>
+						<Typography
+							component="div"
+							variant="h5"
+							sx={{ color: 'blue', m: 0, p: 0, fontSize: '22px' }}
+						>
+							{name}
+						</Typography>
+						<Typography
+							variant="subtitle1"
+							color="text.secondary"
+							component="div"
+						>
+							By: {seller}
+						</Typography>
+						<Typography
+							variant="h6"
+							sx={{
+								color: 'text.secondary',
+								m: 0,
+								pt: 2,
+								fontSize: '20px',
+							}}
+						>
+							Price: {price}
+						</Typography>
+						<Typography
+							variant="subtitle1"
+							color="text.secondary"
+							component="div"
+						>
+							Only {stock} left in stock - hurry up!!
+						</Typography>
+					</CardContent>
+					<Box
+						sx={{
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							pl: 2,
+							pb: 1,
+						}}
+					>
+						<Rating
+							name="half-rating-read"
+							defaultValue={star}
+							precision={0.5}
+							readOnly
+						/>
+						<Button
+							variant="contained"
+							sx={{ width: '200px', mt: 2 }}
+							onClick={() => props.handleAddToCart(props.product)}
+							color="primary"
+						>
+							<AddShoppingCartIcon fontSize="small" /> Add to Cart
+						</Button>
+					</Box>
+				</Box>
+			</Card>
 		</div>
 	);
 };
