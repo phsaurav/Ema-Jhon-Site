@@ -4,6 +4,7 @@ import logo from '../../images/logo.png';
 import { AppBar, CssBaseline, Toolbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
+import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
 	const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -23,9 +24,9 @@ const Header = (props) => {
 			<AppBar position="relative" color="primary">
 				<Toolbar className="header">
 					<div>
-						<a href="/shop">Shop</a>
-						<a href="/review">Order Review</a>
-						<a href="/inventory">Manage Inventory</a>
+						<NavLink to="/shop">Shop</NavLink>
+						<NavLink to="/review">Order Review</NavLink>
+						<NavLink to="/inventory">Manage Inventory</NavLink>
 					</div>
 					<div className="search-box">
 						<div>
