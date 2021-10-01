@@ -1,6 +1,3 @@
-import React from 'react';
-import Rating from '@mui/material/Rating';
-import './Product.css';
 import {
 	Button,
 	Card,
@@ -8,26 +5,23 @@ import {
 	CardMedia,
 	Typography,
 } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Box } from '@mui/system';
+import React from 'react';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { red } from '@mui/material/colors';
 
-const Product = (props) => {
-	const { name, img, price, stock, seller, star } = props.product;
+const ReviewItem = (props) => {
+	const { name, price, seller, quantity, key } = props.product;
+	console.log(props.product);
 	return (
 		<div className="product-container">
 			<Card sx={{ display: 'flex', mt: 5, width: '650px' }}>
-				<CardMedia
-					component="img"
-					sx={{ width: '280px', p: 2 }}
-					image={img}
-					alt="Live from space album cover"
-				/>
 				<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 					<CardContent sx={{ flex: '1 0 auto' }}>
 						<Typography
 							component="div"
 							variant="h5"
-							sx={{ color: 'blue', m: 0, p: 0, fontSize: '22px' }}
+							sx={{ m: 0, p: 0, fontSize: '22px' }}
 						>
 							{name}
 						</Typography>
@@ -54,7 +48,7 @@ const Product = (props) => {
 							color="text.secondary"
 							component="div"
 						>
-							Only {stock} left in stock - hurry up!!
+							Quantity: X{quantity}
 						</Typography>
 					</CardContent>
 					<Box
@@ -66,19 +60,22 @@ const Product = (props) => {
 							pb: 1,
 						}}
 					>
-						<Rating
-							name="half-rating-read"
-							defaultValue={star}
-							precision={0.5}
-							readOnly
-						/>
 						<Button
 							variant="contained"
-							sx={{ width: '200px', mt: 2 }}
-							onClick={() => props.handleAddToCart(props.product)}
+							sx={{
+								width: '180px',
+								mt: 1,
+								p: 1,
+								bgcolor: red[400],
+							}}
+							onClick={() => props.handleRemove(key)}
 							color="primary"
 						>
-							<AddShoppingCartIcon fontSize="small" /> Add to Cart
+							<RemoveCircleIcon
+								sx={{ mr: 1 }}
+								fontSize="medium"
+							/>
+							Remove Item
 						</Button>
 					</Box>
 				</Box>
@@ -87,4 +84,4 @@ const Product = (props) => {
 	);
 };
 
-export default Product;
+export default ReviewItem;

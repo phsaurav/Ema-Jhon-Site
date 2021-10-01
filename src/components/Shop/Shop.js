@@ -38,6 +38,8 @@ const Shop = (props) => {
 		clearTheCart();
 		setUpdatedCart([]);
 	};
+
+	
 	return (
 		<div>
 			<div className="shop-container">

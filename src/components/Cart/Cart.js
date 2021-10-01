@@ -23,7 +23,6 @@ const Cart = (props) => {
 	let total = 0;
 	// cart.forEach((cartItem) => total += cartItem.price);
 	let totalQuantity = 0;
-	console.log(cart);
 	for (const product of cart) {
 		if (!product.quantity) {
 			product.quantity = 1;
@@ -109,7 +108,8 @@ const Cart = (props) => {
 						onClick={() => props.handleClearCart(props.product)}
 						color="primary"
 					>
-						<DeleteSweepIcon fontSize="medium" /> {''}Clear Cart
+						<DeleteSweepIcon sx={{ mr: 1 }} fontSize="medium" />
+						Clear Cart
 					</Button>
 				</nav>
 			</Box>
