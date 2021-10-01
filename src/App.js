@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Shop from './components/Shop/Shop';
 import Header from './components/Header/Header';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import OrderReview from './components/OrderReview/OrderReview';
+import Inventory from './components/Inventory/Inventory';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
 	const [products, setProducts] = useState([]);
@@ -25,13 +29,36 @@ function App() {
 	}, []);
 	return (
 		<div className="App">
-			<Header key="editor1" handleSearch={handleSearch}></Header>
-			<Shop
-				products={products}
-				setProducts={setProducts}
-				displayProducts={displayProducts}
-				setDisplayProducts={setDisplayProducts}
-			></Shop>
+			<Router>
+				<Header key="editor1" handleSearch={handleSearch}></Header>
+				<Switch>
+					<Route path="/" exact>
+						<Shop
+							products={products}
+							setProducts={setProducts}
+							displayProducts={displayProducts}
+							setDisplayProducts={setDisplayProducts}
+						></Shop>
+					</Route>
+					<Route path="/shop">
+						<Shop
+							products={products}
+							setProducts={setProducts}
+							displayProducts={displayProducts}
+							setDisplayProducts={setDisplayProducts}
+						></Shop>
+					</Route>
+					<Route path="/review">
+						<OrderReview></OrderReview>
+					</Route>
+					<Route path="/inventory">
+						<Inventory></Inventory>
+					</Route>
+					<Route>
+						<NotFound></NotFound>
+					</Route>
+				</Switch>
+			</Router>
 		</div>
 	);
 }
