@@ -1,5 +1,6 @@
 import React from 'react';
 import Rating from '@mui/material/Rating';
+import './Product.css';
 import {
 	Button,
 	Card,
@@ -14,8 +15,8 @@ const Product = (props) => {
 	console.log(props.product);
 	const { name, img, price, stock, seller, star } = props.product;
 	return (
-		<div>
-			<Card sx={{ display: 'flex', mr: 3, mt: 5 }}>
+		<div className="product-container">
+			<Card sx={{ display: 'flex', mr: 3, mt: 5, width: '700px' }}>
 				<CardMedia
 					component="img"
 					sx={{ width: '280px', p: 2 }}
