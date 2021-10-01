@@ -9,7 +9,6 @@ import {
 } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Box } from '@mui/system';
-import { yellow } from '@mui/material/colors';
 
 const Product = (props) => {
 	console.log(props.product);
