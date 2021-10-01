@@ -1,10 +1,4 @@
-import {
-	Button,
-	Card,
-	CardContent,
-	CardMedia,
-	Typography,
-} from '@mui/material';
+import { Button, Card, CardContent, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
