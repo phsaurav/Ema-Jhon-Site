@@ -1,5 +1,4 @@
 import {
-	Button,
 	Divider,
 	List,
 	ListItem,
@@ -15,8 +14,6 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import { red } from '@mui/material/colors';
 
 const Cart = (props) => {
 	const { cart } = props;
@@ -96,21 +93,7 @@ const Cart = (props) => {
 							</Typography>
 						</ListItem>
 					</List>
-					<Button
-						variant="contained"
-						sx={{
-							width: '200px',
-							mt: 2,
-							ml: 3,
-							fontSize: '18px',
-							bgcolor: red[400],
-						}}
-						onClick={() => props.handleClearCart(props.product)}
-						color="primary"
-					>
-						<DeleteSweepIcon sx={{ mr: 1 }} fontSize="medium" />
-						Clear Cart
-					</Button>
+					{props.children}
 				</nav>
 			</Box>
 		</div>

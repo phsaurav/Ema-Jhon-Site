@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb, clearTheCart, getStoredCart } from '../../utilities/fakedb';
+import { addToDb, getStoredCart } from '../../utilities/fakedb';
+import { Button } from '@mui/material';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
+import { Link } from 'react-router-dom';
 
 const Shop = (props) => {
 	const [cart, setCart] = useState([]);
@@ -34,12 +37,6 @@ const Shop = (props) => {
 		setUpdatedCart(newCart);
 	};
 
-	const handleClearCart = (e) => {
-		clearTheCart();
-		setUpdatedCart([]);
-	};
-
-	
 	return (
 		<div>
 			<div className="shop-container">
@@ -53,7 +50,27 @@ const Shop = (props) => {
 					))}
 				</div>
 				<div className="cart-container">
-					<Cart cart={cart} handleClearCart={handleClearCart}></Cart>
+					<Cart cart={cart}>
+						<Link to="/review" style={{ textDecoration: 'none' }}>
+							<Button
+								variant="contained"
+								sx={{
+									textDecoration: 'none',
+									width: '200px',
+									mt: 2,
+									ml: 3,
+									fontSize: '16px',
+								}}
+								color="primary"
+							>
+								<FactCheckIcon
+									sx={{ mr: 1 }}
+									fontSize="medium"
+								/>
+								Review Order
+							</Button>
+						</Link>
+					</Cart>
 				</div>
 			</div>
 		</div>

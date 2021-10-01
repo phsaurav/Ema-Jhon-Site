@@ -1,11 +1,14 @@
+import { Button } from '@mui/material';
 import React from 'react';
 import useCart from '../../hooks/useCart';
 import Cart from '../Cart/Cart';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import './OrderReview.css';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import { red } from '@mui/material/colors';
 
 const OrderReview = (props) => {
-	let [cart, handleClearCart, handleRemove] = useCart(props.products);
+	let [cart, handlePlaceOrder, handleRemove] = useCart(props.products);
 
 	return (
 		<div>
@@ -20,7 +23,23 @@ const OrderReview = (props) => {
 					))}
 				</div>
 				<div className="cart-container">
-					<Cart cart={cart} handleClearCart={handleClearCart}></Cart>
+					<Cart cart={cart}>
+						<Button
+							variant="contained"
+							sx={{
+								width: '200px',
+								mt: 2,
+								ml: 3,
+								fontSize: '18px',
+								bgcolor: red[400],
+							}}
+							onClick={() => handlePlaceOrder(props.product)}
+							color="primary"
+						>
+							<DeleteSweepIcon sx={{ mr: 1 }} fontSize="medium" />
+							Place Order
+						</Button>
+					</Cart>
 				</div>
 			</div>
 		</div>

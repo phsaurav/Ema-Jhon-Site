@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { clearTheCart, getStoredCart, deleteFromDb } from '../utilities/fakedb';
 
 const useCart = (products) => {
 	const [cart, setCart] = useState([]);
+	const history = useHistory();
 
 	useEffect(() => {
 		if (products.length) {
@@ -22,7 +24,8 @@ const useCart = (products) => {
 			setCart(storedCart);
 		}
 	}, [products]);
-	const handleClearCart = (e) => {
+	const handlePlaceOrder = (e) => {
+		history.push('/placeorder');
 		clearTheCart();
 		setCart([]);
 	};
@@ -32,7 +35,7 @@ const useCart = (products) => {
 		deleteFromDb(key);
 	};
 
-	return [cart, handleClearCart, handleRemove];
+	return [cart, handlePlaceOrder, handleRemove];
 };
 
 export default useCart;
