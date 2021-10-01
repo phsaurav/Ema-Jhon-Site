@@ -16,7 +16,7 @@ const Product = (props) => {
 	const { name, img, price, stock, seller, star } = props.product;
 	return (
 		<div className="product-container">
-			<Card sx={{ display: 'flex', mr: 3, mt: 5, width: '700px' }}>
+			<Card sx={{ display: 'flex', mt: 5, width: '650px' }}>
 				<CardMedia
 					component="img"
 					sx={{ width: '280px', p: 2 }}

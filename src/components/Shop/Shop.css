@@ -9,11 +9,12 @@
 .shop-container {
 	display: grid;
 	grid-template-columns: 3fr 1fr;
+	width: 100%;
 }
 
 .product-container{
-	margin-right: 5px;
-	margin-left: 30px;
+	margin-right: 10px;
+	margin-left: 10px;
 	text-align: left;
 }
 
