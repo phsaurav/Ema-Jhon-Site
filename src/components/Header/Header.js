@@ -24,8 +24,8 @@ const Header = (props) => {
 				<Toolbar className="header">
 					<div>
 						<a href="/shop">Shop</a>
-						<a href="/order">Order Review</a>
-						<a href="/inventroy">Manage Inventory</a>
+						<a href="/review">Order Review</a>
+						<a href="/inventory">Manage Inventory</a>
 					</div>
 					<div className="search-box">
 						<div>
