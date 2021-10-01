@@ -49,7 +49,7 @@ function App() {
 						></Shop>
 					</Route>
 					<Route path="/review">
-						<OrderReview></OrderReview>
+						<OrderReview products={products}></OrderReview>
 					</Route>
 					<Route path="/inventory">
 						<Inventory></Inventory>
