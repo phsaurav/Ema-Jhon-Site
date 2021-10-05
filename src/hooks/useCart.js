@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { clearTheCart, getStoredCart, deleteFromDb } from '../utilities/fakedb';
+import {
+	clearTheCart,
+	getStoredCart,
+	deleteFromDb,
+} from '../services/utilities/fakedb';
 
 const useCart = (products) => {
 	const [cart, setCart] = useState([]);

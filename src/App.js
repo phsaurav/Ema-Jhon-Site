@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Shop from './components/Shop/Shop';
+import Shop from './containers/Shop/Shop';
 import Header from './components/Header/Header';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import OrderReview from './components/OrderReview/OrderReview';
-import Inventory from './components/Inventory/Inventory';
-import NotFound from './components/NotFound/NotFound';
-import PlaceOrder from './components/PlaceOrder/PlaceOrder';
+import OrderReview from './containers/OrderReview/OrderReview';
+import Inventory from './containers/Inventory/Inventory';
+import NotFound from './containers/NotFound/NotFound';
+import PlaceOrder from './containers/PlaceOrder/PlaceOrder';
 
 function App() {
 	const [products, setProducts] = useState([]);

@@ -1,8 +1,8 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import useCart from '../../hooks/useCart';
-import Cart from '../Cart/Cart';
-import ReviewItem from '../ReviewItem/ReviewItem';
+import Cart from '../../components/Cart/Cart';
+import ReviewItem from './ReviewItem/ReviewItem';
 import './OrderReview.css';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import { red } from '@mui/material/colors';

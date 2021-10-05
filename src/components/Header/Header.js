@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import logo from '../../images/logo.png';
+import logo from '../../assets/images/logo.png';
 import { AppBar, CssBaseline, Toolbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';

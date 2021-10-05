@@ -24,7 +24,7 @@ const updateDb = (cart) => {
 const removeFromDb = (id) => {
 	const exists = getDb();
 	if (!exists) {
-		alert('Cart Already Empty!!')
+		alert('Cart Already Empty!!');
 	} else {
 		const shopping_cart = JSON.parse(exists);
 		delete shopping_cart[id];

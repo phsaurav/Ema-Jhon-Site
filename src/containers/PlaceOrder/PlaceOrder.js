@@ -6,7 +6,7 @@ import {
 	Typography,
 } from '@mui/material';
 import React from 'react';
-import img from '../../images/giphy.gif';
+import img from '../../assets/images/giphy.gif';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import StoreIcon from '@mui/icons-material/Store';
 import { Link } from 'react-router-dom';

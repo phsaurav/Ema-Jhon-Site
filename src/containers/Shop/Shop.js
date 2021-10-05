@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb, getStoredCart } from '../../utilities/fakedb';
+import { addToDb, getStoredCart } from '../../services/utilities/fakedb';
 import { Button } from '@mui/material';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
-import Cart from '../Cart/Cart';
-import Product from '../Product/Product';
+import Cart from '../../components/Cart/Cart';
+import Product from './Product/Product';
 import './Shop.css';
 import { Link } from 'react-router-dom';
 
