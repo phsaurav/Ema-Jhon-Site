@@ -1,12 +1,16 @@
 import React from 'react';
 import './Header.css';
 import logo from '../../assets/images/logo.png';
-import { AppBar, CssBaseline, Toolbar } from '@mui/material';
+import { AppBar, Avatar, Button, CssBaseline, Toolbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { NavLink } from 'react-router-dom';
+import LoginIcon from '@mui/icons-material/Login';
+import useFirebase from '../../hooks/useFirebase';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Header = (props) => {
+	const { user, logOut } = useFirebase();
 	const SearchIconWrapper = styled('div')(({ theme }) => ({
 		padding: theme.spacing(0, 2),
 		height: '100%',
@@ -23,24 +27,82 @@ const Header = (props) => {
 			<img className="logo" src={logo} alt="" />
 			<AppBar position="relative" color="primary">
 				<Toolbar className="header">
-					<div>
+					<div className="nav-left-half">
 						<NavLink to="/shop">Shop</NavLink>
 						<NavLink to="/review">Order Review</NavLink>
 						<NavLink to="/inventory">Manage Inventory</NavLink>
 					</div>
-					<div className="search-box">
-						<div>
-							<SearchIconWrapper>
-								<SearchIcon />
-							</SearchIconWrapper>
+
+					<div className="nav-right-half">
+						<div className="search-box">
+							<div>
+								<SearchIconWrapper>
+									<SearchIcon />
+								</SearchIconWrapper>
+							</div>
+							<div>
+								<input
+									autoFocus
+									type="text"
+									onChange={props.handleSearch}
+									placeholder="Search Product"
+								/>
+							</div>
 						</div>
 						<div>
-							<input
-								autoFocus
-								type="text"
-								onChange={props.handleSearch}
-								placeholder="Search Product"
-							/>
+							{user.displayName ? (
+								<Button
+									variant="text"
+									onClick={logOut}
+									title="Log Out"
+									sx={{ color: 'white' }}
+								>
+									<Avatar
+										sx={{
+											m: 1,
+											bgcolor: 'white',
+											'&:hover': {
+												bgcolor: 'primary.main',
+												border: '2px solid white',
+												color: 'white',
+											},
+										}}
+									>
+										<LogoutIcon
+											sx={{
+												color: 'primary.main',
+												'&:hover': {
+													color: 'white',
+												},
+											}}
+										/>
+									</Avatar>
+									{user.displayName}
+								</Button>
+							) : (
+								<NavLink to="/login" title="Log In">
+									<Avatar
+										sx={{
+											m: 1,
+											bgcolor: 'white',
+											'&:hover': {
+												bgcolor: 'primary.main',
+												border: '2px solid white',
+												color: 'white',
+											},
+										}}
+									>
+										<LoginIcon
+											sx={{
+												color: 'primary.main',
+												'&:hover': {
+													color: 'white',
+												},
+											}}
+										/>
+									</Avatar>
+								</NavLink>
+							)}
 						</div>
 					</div>
 				</Toolbar>

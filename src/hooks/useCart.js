@@ -29,7 +29,7 @@ const useCart = (products) => {
 		}
 	}, [products]);
 	const handlePlaceOrder = (e) => {
-		history.push('/placeorder');
+		history.push('/shipping');
 		clearTheCart();
 		setCart([]);
 	};

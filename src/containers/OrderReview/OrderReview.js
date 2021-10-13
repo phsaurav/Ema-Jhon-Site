@@ -4,8 +4,8 @@ import useCart from '../../hooks/useCart';
 import Cart from '../../components/Cart/Cart';
 import ReviewItem from './ReviewItem/ReviewItem';
 import './OrderReview.css';
-import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import { red } from '@mui/material/colors';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import { yellow } from '@mui/material/colors';
 
 const OrderReview = (props) => {
 	let [cart, handlePlaceOrder, handleRemove] = useCart(props.products);
@@ -29,15 +29,19 @@ const OrderReview = (props) => {
 							sx={{
 								width: '200px',
 								mt: 2,
-								ml: 3,
+								ml: 2,
+								py: 1,
 								fontSize: '18px',
-								bgcolor: red[400],
+								bgcolor: yellow[800],
 							}}
 							onClick={() => handlePlaceOrder(props.product)}
 							color="primary"
 						>
-							<DeleteSweepIcon sx={{ mr: 1 }} fontSize="medium" />
-							Place Order
+							<LocalShippingIcon
+								sx={{ mr: 1 }}
+								fontSize="medium"
+							/>
+							Shipping
 						</Button>
 					</Cart>
 				</div>
