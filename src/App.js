@@ -16,6 +16,9 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 function App() {
 	const [products, setProducts] = useState([]);
 	const [displayProducts, setDisplayProducts] = useState([]);
+	const [pageCount, setPageCount] = useState(0);
+	const [page, setPage] = useState(0);
+	const size = 10;
 
 	const handleSearch = (e) => {
 		const searchText = e.target.value;
@@ -25,14 +28,21 @@ function App() {
 		setDisplayProducts(matchedProducts);
 		console.log(e.target.value);
 	};
+
 	useEffect(() => {
-		fetch('./products.json')
+		fetch(
+			`https://emma-jhon-server.herokuapp.com/products?page=${page}&&size=${size}`
+		)
 			.then((res) => res.json())
 			.then((data) => {
-				setProducts(data);
-				setDisplayProducts(data);
+				setProducts(data.products);
+				setDisplayProducts(data.products);
+				const count = data.count;
+				const pageNumber = Math.ceil(count / size);
+				setPageCount(pageNumber);
 			});
-	}, []);
+	}, [page]);
+
 	return (
 		<div className="App">
 			<AuthProvider>
@@ -42,6 +52,9 @@ function App() {
 						<Route path="/" exact>
 							<Shop
 								products={products}
+								pageCount={pageCount}
+								page={page}
+								setPage={setPage}
 								setProducts={setProducts}
 								displayProducts={displayProducts}
 								setDisplayProducts={setDisplayProducts}
@@ -50,6 +63,9 @@ function App() {
 						<Route path="/shop">
 							<Shop
 								products={products}
+								pageCount={pageCount}
+								page={page}
+								setPage={setPage}
 								setProducts={setProducts}
 								displayProducts={displayProducts}
 								setDisplayProducts={setDisplayProducts}

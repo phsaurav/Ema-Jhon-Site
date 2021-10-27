@@ -8,12 +8,14 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { yellow } from '@mui/material/colors';
 
 const OrderReview = (props) => {
-	let [cart, handlePlaceOrder, handleRemove] = useCart(props.products);
+	let [cart, setCart, handlePlaceOrder, handleRemove] = useCart(
+		props.products
+	);
 
 	return (
 		<div>
 			<div className="review-container">
-				<div className="product-container">
+				<div className="review-product-container">
 					{cart.map((product) => (
 						<ReviewItem
 							key={product.key}

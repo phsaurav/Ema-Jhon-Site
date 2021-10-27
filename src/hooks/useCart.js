@@ -11,25 +11,38 @@ const useCart = (products) => {
 	const history = useHistory();
 
 	useEffect(() => {
-		if (products.length) {
-			const savedCart = getStoredCart();
-			let storedCart = [];
-			for (const key in savedCart) {
-				console.log(savedCart[key]);
-				const addedProduct = products.find(
-					(product) => product.key === key
-				);
-				if (addedProduct) {
-					const quantity = savedCart[key];
-					addedProduct.quantity = quantity;
-					storedCart.push(addedProduct);
+		const savedCart = getStoredCart();
+		const keys = Object.keys(savedCart);
+		fetch('https://emma-jhon-server.herokuapp.com/products/bykeys', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(keys),
+		})
+			.then((res) => res.json())
+			.then((products) => {
+				console.log(products);
+				if (products.length) {
+					const savedCart = getStoredCart();
+					let storedCart = [];
+					for (const key in savedCart) {
+						console.log(savedCart[key]);
+						const addedProduct = products.find(
+							(product) => product.key === key
+						);
+						if (addedProduct) {
+							const quantity = savedCart[key];
+							addedProduct.quantity = quantity;
+							storedCart.push(addedProduct);
+						}
+					}
+					setCart(storedCart);
 				}
-			}
-			setCart(storedCart);
-		}
+			});
 	}, [products]);
-	const handlePlaceOrder = (e) => {
-		history.push('/shipping');
+
+	const ClearCart = (e) => {
 		clearTheCart();
 		setCart([]);
 	};
@@ -39,7 +52,7 @@ const useCart = (products) => {
 		deleteFromDb(key);
 	};
 
-	return [cart, handlePlaceOrder, handleRemove];
+	return [cart, setCart, ClearCart, handleRemove];
 };
 
 export default useCart;

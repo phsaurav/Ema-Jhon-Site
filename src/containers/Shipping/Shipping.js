@@ -10,22 +10,33 @@ import Container from '@mui/material/Container';
 import useAuth from '../../hooks/useAuth';
 import { useHistory } from 'react-router-dom';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import { clearTheCart, getStoredCart } from '../../services/utilities/fakedb';
+import { useForm } from 'react-hook-form';
 
 const Shipping = () => {
 	const history = useHistory();
 	const { user } = useAuth();
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		console.log({
-			name: data.get('name'),
-			email: data.get('email'),
-			address: data.get('address'),
-			city: data.get('city'),
-			number: data.get('number'),
-		});
-		history.push('/placeorder');
+	const { handleSubmit, register, reset } = useForm();
+	const onSubmit = (data) => {
+		const savedCart = getStoredCart();
+		data.order = savedCart;
+		fetch('https://emma-jhon-server.herokuapp.com/orders', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		})
+			.then((res) => res.json())
+			.then((result) => {
+				if (result.insertedId) {
+					history.push('/placeorder');
+					clearTheCart();
+					reset();
+				}
+			});
 	};
+
 	return (
 		<div>
 			<Container component="main" maxWidth="xs">
@@ -44,11 +55,7 @@ const Shipping = () => {
 					<Typography component="h1" variant="h5">
 						Shipping Info
 					</Typography>
-					<Box
-						component="form"
-						onSubmit={handleSubmit}
-						sx={{ mt: 3 }}
-					>
+					<form onSubmit={handleSubmit(onSubmit)}>
 						<Grid container spacing={2}>
 							<Grid item xs={12}>
 								<TextField
@@ -59,6 +66,7 @@ const Shipping = () => {
 									name="name"
 									autoComplete="name"
 									defaultValue={user?.displayName}
+									{...register('name')}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -70,6 +78,7 @@ const Shipping = () => {
 									name="email"
 									autoComplete="email"
 									defaultValue={user?.email}
+									{...register('email')}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -80,6 +89,7 @@ const Shipping = () => {
 									label="Address"
 									name="address"
 									autoComplete="address"
+									{...register('address')}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -90,6 +100,7 @@ const Shipping = () => {
 									label="City"
 									name="city"
 									autoComplete="city"
+									{...register('city')}
 								/>
 							</Grid>
 							<Grid item xs={12}>
@@ -100,6 +111,7 @@ const Shipping = () => {
 									label="Phone Number"
 									name="number"
 									autoComplete="number"
+									{...register('number')}
 								/>
 							</Grid>
 						</Grid>
@@ -111,7 +123,7 @@ const Shipping = () => {
 						>
 							Place Order
 						</Button>
-					</Box>
+					</form>
 				</Box>
 			</Container>
 		</div>

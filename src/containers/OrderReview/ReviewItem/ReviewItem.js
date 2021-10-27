@@ -6,10 +6,9 @@ import { red } from '@mui/material/colors';
 
 const ReviewItem = (props) => {
 	const { name, price, seller, quantity, key } = props.product;
-	console.log(props.product);
 	return (
 		<div className="product-container">
-			<Card sx={{ display: 'flex', mt: 5, width: '650px' }}>
+			<Card sx={{ display: 'flex', mt: 5, width: '700px' }}>
 				<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 					<CardContent sx={{ flex: '1 0 auto' }}>
 						<Typography
