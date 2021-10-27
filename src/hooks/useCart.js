@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
 import {
 	clearTheCart,
 	getStoredCart,
@@ -8,7 +7,6 @@ import {
 
 const useCart = (products) => {
 	const [cart, setCart] = useState([]);
-	const history = useHistory();
 
 	useEffect(() => {
 		const savedCart = getStoredCart();
@@ -52,7 +50,7 @@ const useCart = (products) => {
 		deleteFromDb(key);
 	};
 
-	return [cart, setCart, ClearCart, handleRemove];
+	return {cart, setCart, ClearCart, handleRemove};
 };
 
 export default useCart;

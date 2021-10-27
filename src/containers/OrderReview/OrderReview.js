@@ -8,7 +8,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { yellow } from '@mui/material/colors';
 
 const OrderReview = (props) => {
-	let [cart, setCart, handlePlaceOrder, handleRemove] = useCart(
+	let {cart, handlePlaceOrder, handleRemove} = useCart(
 		props.products
 	);
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { addToDb, getStoredCart } from '../../services/utilities/fakedb';
+import React from 'react';
+import { addToDb } from '../../services/utilities/fakedb';
 import { Button } from '@mui/material';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import Pagination from '@mui/material/Pagination';
@@ -11,7 +11,7 @@ import useCart from '../../hooks/useCart';
 import Box from '@mui/material/Box';
 
 const Shop = (props) => {
-	let [cart, setCart] = useCart(props.products);
+	let {cart, setCart} = useCart(props.products);
 
 	const handleChange = (event, value) => {
 		console.log(value);
