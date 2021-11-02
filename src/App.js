@@ -12,6 +12,7 @@ import Login from './containers/Login/Login';
 import Register from './containers/Register/Register';
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Orders from './containers/Orders/Orders';
 
 function App() {
 	const [products, setProducts] = useState([]);
@@ -82,6 +83,9 @@ function App() {
 						</PrivateRoute>
 						<PrivateRoute path="/shipping">
 							<Shipping></Shipping>
+						</PrivateRoute>
+						<PrivateRoute path="/orders">
+							<Orders></Orders>
 						</PrivateRoute>
 						<Route path="/login">
 							<Login></Login>

@@ -31,6 +31,9 @@ const Header = (props) => {
 						<NavLink to="/shop">Shop</NavLink>
 						<NavLink to="/review">Order Review</NavLink>
 						<NavLink to="/inventory">Manage Inventory</NavLink>
+						{user.displayName && (
+							<NavLink to="/orders">Orders</NavLink>
+						)}
 					</div>
 
 					<div className="nav-right-half">
@@ -51,34 +54,36 @@ const Header = (props) => {
 						</div>
 						<div>
 							{user.displayName ? (
-								<Button
-									variant="text"
-									onClick={logOut}
-									title="Log Out"
-									sx={{ color: 'white' }}
-								>
-									<Avatar
-										sx={{
-											m: 1,
-											bgcolor: 'white',
-											'&:hover': {
-												bgcolor: 'primary.main',
-												border: '2px solid white',
-												color: 'white',
-											},
-										}}
+								<div>
+									<Button
+										variant="text"
+										onClick={logOut}
+										title="Log Out"
+										sx={{ color: 'white' }}
 									>
-										<LogoutIcon
+										<Avatar
 											sx={{
-												color: 'primary.main',
+												m: 1,
+												bgcolor: 'white',
 												'&:hover': {
+													bgcolor: 'primary.main',
+													border: '2px solid white',
 													color: 'white',
 												},
 											}}
-										/>
-									</Avatar>
-									{user.displayName}
-								</Button>
+										>
+											<LogoutIcon
+												sx={{
+													color: 'primary.main',
+													'&:hover': {
+														color: 'white',
+													},
+												}}
+											/>
+										</Avatar>
+										{user.displayName}
+									</Button>
+								</div>
 							) : (
 								<NavLink to="/login" title="Log In">
 									<Avatar
